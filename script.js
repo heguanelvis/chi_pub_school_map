@@ -26,7 +26,7 @@ map.on('load', () => {
     map.on('click', 'cpsPoints', e => {
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(formatName(e.features[0].properties.school_nm))
+            .setHTML(formatName(e.features[0].properties.short_name))
             .addTo(map);
     });
 
