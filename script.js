@@ -63,4 +63,11 @@ map.on('load', () => {
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
     }));
+
+    document.querySelector(".fa-home").addEventListener('click', () => {
+        map.flyTo({
+            zoom: 10,
+            center: [-87.6298, 41.8351]
+        });
+    });
 });
