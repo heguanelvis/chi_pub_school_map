@@ -20,7 +20,11 @@ map.on('load', () => {
         "paint": {
             "circle-radius": 6,
             "circle-color": "#d97d0d",
-            "circle-opacity": 0.6,
+            "circle-opacity": ["case",
+                ["boolean", ["feature-state", "hover"], false],
+                1,
+                0.6
+            ],
             "circle-stroke-color": "#ffffff",
             "circle-stroke-width": 0.5
         }
@@ -39,12 +43,18 @@ map.on('load', () => {
             .addTo(map);
     });
 
+    map.on("mousemove", "cpsPoints", e => {
+        map.setPaintProperty("cpsPoints", 'circle-color', ["case", ["==", ["get", "longName"],
+            e.features[0].properties.longName], "#732002", "#d97d0d"]);
+    });
+
     map.on('mouseenter', 'cpsPoints', () => {
         map.getCanvas().style.cursor = 'pointer';
     });
 
     map.on('mouseleave', 'cpsPoints', () => {
         map.getCanvas().style.cursor = '';
+        map.setPaintProperty("cpsPoints", 'circle-color', "#d97d0d");
     });
 
     map.addControl(new mapboxgl.FullscreenControl());
