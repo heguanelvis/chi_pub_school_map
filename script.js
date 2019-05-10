@@ -24,10 +24,9 @@ map.on('load', () => {
     });
 
     map.on('click', 'cpsPoints', e => {
-        console.log("clicked")
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(e.features[0].properties.school_nm)
+            .setHTML(formatName(e.features[0].properties.school_nm))
             .addTo(map);
     });
 
@@ -39,3 +38,15 @@ map.on('load', () => {
         map.getCanvas().style.cursor = '';
     });
 });
+
+function formatName(capName) {
+    capName = capName.toLowerCase();
+    nameArr = capName.split(" ");
+    capArr = [];
+
+    nameArr.forEach(word => {
+        capArr.push(word.charAt(0).toUpperCase() + word.slice(1));
+    });
+
+    return capArr.join(" ");
+}
