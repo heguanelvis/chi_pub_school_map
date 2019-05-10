@@ -10,7 +10,7 @@ var map = new mapboxgl.Map({
 map.on('load', () => {
     map.addSource('cpsSource', {
         type: 'geojson',
-        data: 'https://data.cityofchicago.org/api/views/mntu-576c/rows.geojson'
+        data: 'https://raw.githubusercontent.com/heguanelvis/chi_pub_school_map/master/cps.geojson'
     });
 
     map.addLayer({
