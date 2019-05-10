@@ -1,5 +1,7 @@
 mapboxgl.accessToken = 'pk.eyJ1IjoiaGVndWFuZWx2aXMiLCJhIjoiY2p0cWFnMmR4MGRlOTQ1bXVkNGhqbnYxYiJ9.g43Zo8jIYEj6l-o_3MD3Hg';
 
+swal("Welcome to CPS Map!", "You can view all Chicago Public Schools at different locations, their school information and profiles.");
+
 let map = new mapboxgl.Map({
     container: 'map',
     style: 'mapbox://styles/mapbox/dark-v10',
@@ -57,12 +59,14 @@ map.on('load', () => {
         map.setPaintProperty("cpsPoints", 'circle-color', "#d97d0d");
     });
 
-    map.addControl(new mapboxgl.FullscreenControl());
-
     map.addControl(new MapboxGeocoder({
         accessToken: mapboxgl.accessToken,
         mapboxgl: mapboxgl
     }));
+
+    map.addControl(new mapboxgl.FullscreenControl());
+
+    map.addControl(new mapboxgl.NavigationControl());
 
     document.querySelector(".fa-home").addEventListener('click', () => {
         map.flyTo({
