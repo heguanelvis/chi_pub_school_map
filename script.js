@@ -27,9 +27,15 @@ map.on('load', () => {
     });
 
     map.on('click', 'cpsPoints', e => {
+        let content = `<h3 class="popup-school-title">${e.features[0].properties.longName}</h3>`;
+        content += `<h4>${e.features[0].properties.phone}</h4>`;
+        content += `<h4>${e.features[0].properties.address}</h4>`;
+        content += `<h4>${e.features[0].properties.enrollment} students enrolled</h4>`;
+        content += `<h4><a class="popup-school-link" href="${e.features[0].properties.schoolProfile}"`
+        content += ` target="_blank">Check School Profile</a><h4>`;
         new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(formatName(e.features[0].properties.short_name))
+            .setHTML(content)
             .addTo(map);
     });
 
@@ -43,15 +49,3 @@ map.on('load', () => {
 
     map.addControl(new mapboxgl.FullscreenControl());
 });
-
-function formatName(capName) {
-    capName = capName.toLowerCase();
-    nameArr = capName.split(" ");
-    capArr = [];
-
-    nameArr.forEach(word => {
-        capArr.push(word.charAt(0).toUpperCase() + word.slice(1));
-    });
-
-    return capArr.join(" ");
-}

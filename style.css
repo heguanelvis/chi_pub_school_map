@@ -10,3 +10,23 @@ body {
   bottom: 0;
   width: 100%;
 }
+
+.mapboxgl-popup-content {
+  background: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  text-justify: inter-word;
+  line-height: 1.2;
+}
+
+.mapboxgl-popup-close-button {
+  outline: none;
+}
+
+.popup-school-title,
+.popup-school-link {
+  color: #732002;
+}
+
+.popup-school-link:hover {
+  color: #D94D1A;
+}
