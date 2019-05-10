@@ -58,4 +58,9 @@ map.on('load', () => {
     });
 
     map.addControl(new mapboxgl.FullscreenControl());
+
+    map.addControl(new MapboxGeocoder({
+        accessToken: mapboxgl.accessToken,
+        mapboxgl: mapboxgl
+    }));
 });
