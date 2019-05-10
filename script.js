@@ -2,7 +2,7 @@ mapboxgl.accessToken = 'pk.eyJ1IjoiaGVndWFuZWx2aXMiLCJhIjoiY2p0cWFnMmR4MGRlOTQ1b
 
 var map = new mapboxgl.Map({
     container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11',
+    style: 'mapbox://styles/mapbox/dark-v10',
     zoom: 10,
     center: [-87.6298, 41.8351]
 });
@@ -18,8 +18,11 @@ map.on('load', () => {
         "type": "circle",
         "source": "cpsSource",
         "paint": {
-            "circle-radius": 5,
-            "circle-color": "#007cbf"
+            "circle-radius": 6,
+            "circle-color": "#d97d0d",
+            "circle-opacity": 0.6,
+            "circle-stroke-color": "#ffffff",
+            "circle-stroke-width": 0.5
         }
     });
 
@@ -37,6 +40,8 @@ map.on('load', () => {
     map.on('mouseleave', 'cpsPoints', () => {
         map.getCanvas().style.cursor = '';
     });
+
+    map.addControl(new mapboxgl.FullscreenControl());
 });
 
 function formatName(capName) {
